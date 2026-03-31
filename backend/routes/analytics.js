@@ -11,8 +11,8 @@ const {
    ANALYTICS ROUTES
 ================================ */
 
-router.get("/summary",  summary);
-router.get("/trends", trends);
-router.get("/insights",  insights);
+router.get("/summary", auth,  summary);
+router.get("/trends",auth, trends);
+router.get("/insights",auth,  insights);
 
 module.exports = router;
