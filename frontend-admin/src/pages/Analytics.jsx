@@ -13,7 +13,7 @@ export default function Analytics() {
     const fetchTrends = async () => {
       try {
     
-        const res = await api.get("/analytics/trends");
+        const res = await api.get("api/analytics/trends");
 
         console.log("BACKEND TREND RESPONSE:", res.data);
 
