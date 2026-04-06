@@ -19,7 +19,7 @@ export default function Dashboard() {
       const summaryRes = await api.get("/api/analytics/summary");
       setSummary(summaryRes.data);
 
-      const insightsRes = await api.get("api/analytics/insights");
+      const insightsRes = await api.get("/api/analytics/insights");
       const newInsights = insightsRes.data;
 
       // detect changed risk sessions
