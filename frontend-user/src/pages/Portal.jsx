@@ -33,7 +33,7 @@ export default function Portal() {
       lastEventTime = Date.now();
 
       try {
-        const res = await api.post("/events", {
+        const res = await api.post("/api/events", {
           sessionId,
           eventType: type,
           page: "portal"
