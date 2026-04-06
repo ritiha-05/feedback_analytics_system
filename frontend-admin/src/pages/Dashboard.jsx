@@ -16,10 +16,10 @@ export default function Dashboard() {
 
   const fetchData = async () => {
     try {
-      const summaryRes = await api.get("/analytics/summary");
+      const summaryRes = await api.get("/api/analytics/summary");
       setSummary(summaryRes.data);
 
-      const insightsRes = await api.get("/analytics/insights");
+      const insightsRes = await api.get("/api/analytics/insights");
       const newInsights = insightsRes.data;
 
       // detect changed risk sessions
