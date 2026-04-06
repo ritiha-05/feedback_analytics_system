@@ -8,7 +8,7 @@ export default function FeedbackForm({ sessionId }) {
 
   const fetchFeedback = async () => {
     try {
-      const res = await api.get("/feedback");
+      const res = await api.get("/api/feedback");
       setFeedbackList(res.data);
     } catch (err) {
       console.log(err);
@@ -27,7 +27,7 @@ export default function FeedbackForm({ sessionId }) {
     }
 
     try {
-      await api.post("/feedback", {
+      await api.post("/api/feedback", {
         sessionId,
         message
       });
@@ -47,7 +47,7 @@ export default function FeedbackForm({ sessionId }) {
     }
 
     try {
-      await api.put(`/feedback/${editingId}`, {
+      await api.put(`/api/feedback/${editingId}`, {
         message
       });
 
