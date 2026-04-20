@@ -7,7 +7,8 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   Area,
-  AreaChart
+  AreaChart,
+  Legend
 } from "recharts";
 
 export default function Charts({ data }) {
@@ -33,7 +34,6 @@ export default function Charts({ data }) {
       <ResponsiveContainer width="100%" height={320}>
         <AreaChart data={data}>
 
-          {/* ⭐ SOFT GRID (Stripe style) */}
           <CartesianGrid
             strokeDasharray="3 3"
             stroke="#E2E8F0"
@@ -53,7 +53,6 @@ export default function Charts({ data }) {
             tickLine={false}
           />
 
-          {/* ⭐ MODERN TOOLTIP */}
           <Tooltip
             contentStyle={{
               background: "white",
@@ -63,39 +62,54 @@ export default function Charts({ data }) {
             }}
           />
 
-          {/* ⭐ STRIPE-STYLE GRADIENT */}
+          <Legend />
+
+          {/* 🎨 Gradients */}
           <defs>
-            <linearGradient id="stripeGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#6366F1" stopOpacity={0.35}/>
-              <stop offset="95%" stopColor="#6366F1" stopOpacity={0}/>
+            <linearGradient id="positiveGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#10B981" stopOpacity={0.3}/>
+              <stop offset="95%" stopColor="#10B981" stopOpacity={0}/>
+            </linearGradient>
+
+            <linearGradient id="neutralGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#F59E0B" stopOpacity={0.3}/>
+              <stop offset="95%" stopColor="#F59E0B" stopOpacity={0}/>
+            </linearGradient>
+
+            <linearGradient id="negativeGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#EF4444" stopOpacity={0.3}/>
+              <stop offset="95%" stopColor="#EF4444" stopOpacity={0}/>
             </linearGradient>
           </defs>
 
-          {/* ⭐ AREA (soft background fill) */}
-          <Area
+          {/* 🔹 POSITIVE */}
+          <Area type="monotone" dataKey="positive" stroke="none" fill="url(#positiveGrad)" />
+          <Line
             type="monotone"
-            dataKey="negative"
-            stroke="none"
-            fill="url(#stripeGradient)"
+            dataKey="positive"
+            stroke="#10B981"
+            strokeWidth={2}
+            dot={{ r: 3 }}
           />
 
-          {/* ⭐ MAIN LINE */}
+          {/* 🔸 NEUTRAL */}
+          <Area type="monotone" dataKey="neutral" stroke="none" fill="url(#neutralGrad)" />
+          <Line
+            type="monotone"
+            dataKey="neutral"
+            stroke="#F59E0B"
+            strokeWidth={2}
+            dot={{ r: 3 }}
+          />
+
+          {/* 🔻 NEGATIVE */}
+          <Area type="monotone" dataKey="negative" stroke="none" fill="url(#negativeGrad)" />
           <Line
             type="monotone"
             dataKey="negative"
-            stroke="#6366F1"
+            stroke="#EF4444"
             strokeWidth={3}
-            dot={{
-              r: 4,
-              fill: "#6366F1"
-            }}
-            activeDot={{
-              r: 7,
-              fill: "#6366F1",
-              stroke: "#fff",
-              strokeWidth: 2
-            }}
-            animationDuration={700}
+            dot={{ r: 4 }}
           />
 
         </AreaChart>
