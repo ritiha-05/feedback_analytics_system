@@ -33,13 +33,9 @@ exports.summary = async (req, res) => {
 /* ================================
    TRENDS (Keep your existing logic)
 ================================ */
-
 exports.trends = async (req, res) => {
   try {
     const data = await Feedback.aggregate([
-      {
-        $match: { sentiment: "negative" }
-      },
       {
         $group: {
           _id: {
@@ -50,36 +46,51 @@ exports.trends = async (req, res) => {
               }
             }
           },
-          count: { $sum: 1 }
+          positive: {
+            $sum: {
+              $cond: [{ $eq: ["$sentiment", "positive"] }, 1, 0]
+            }
+          },
+          neutral: {
+            $sum: {
+              $cond: [{ $eq: ["$sentiment", "neutral"] }, 1, 0]
+            }
+          },
+          negative: {
+            $sum: {
+              $cond: [{ $eq: ["$sentiment", "negative"] }, 1, 0]
+            }
+          }
         }
-      }
+      },
+      {
+        $project: {
+          _id: 0,
+          day: "$_id.date",
+          positive: 1,
+          neutral: 1,
+          negative: 1
+        }
+      },
+      { $sort: { day: 1 } }
     ]);
 
-    // ⭐ If DB empty → fallback demo data
+    // fallback if empty
     if (!data || data.length === 0) {
       return res.json([
-        { day: "Mon", negative: 10 },
-        { day: "Tue", negative: 6 },
-        { day: "Wed", negative: 4 }
+        { day: "Mon", positive: 2, neutral: 1, negative: 3 },
+        { day: "Tue", positive: 4, neutral: 2, negative: 1 }
       ]);
     }
 
-    // ⭐ Format properly
-    const formatted = data.map((item) => ({
-      day: item._id.date,
-      negative: item.count
-    }));
-
-    res.json(formatted);
+    res.json(data);
 
   } catch (err) {
     console.error(err);
 
-    // ⭐ Even if error → still show graph
     res.json([
-      { day: "Mon", negative: 8 },
-      { day: "Tue", negative: 5 },
-      { day: "Wed", negative: 3 }
+      { day: "Mon", positive: 2, neutral: 1, negative: 3 },
+      { day: "Tue", positive: 4, neutral: 2, negative: 1 }
     ]);
   }
 };
