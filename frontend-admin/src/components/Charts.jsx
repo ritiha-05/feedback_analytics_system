@@ -83,27 +83,30 @@ export default function Charts({ data }) {
           </defs>
 
           {/* 🔹 POSITIVE */}
-          <Area type="monotone" dataKey="positive" stroke="none" fill="url(#positiveGrad)" />
+          <Area type="monotone" stroke="none" fill="url(#positiveGrad)" />
           <Line
             type="monotone"
+            dataKey="positive"
             stroke="#10B981"
             strokeWidth={2}
             dot={{ r: 3 }}
           />
 
           {/* 🔸 NEUTRAL */}
-          <Area type="monotone" dataKey="neutral" stroke="none" fill="url(#neutralGrad)" />
+          <Area type="monotone" stroke="none" fill="url(#neutralGrad)" />
           <Line
             type="monotone"
+            dataKey="neutral"
             stroke="#F59E0B"
             strokeWidth={2}
             dot={{ r: 3 }}
           />
 
           {/* 🔻 NEGATIVE */}
-          <Area type="monotone" dataKey="negative" stroke="none" fill="url(#negativeGrad)" />
+          <Area type="monotone" stroke="none" fill="url(#negativeGrad)" />
           <Line
             type="monotone"
+            dataKey="negative"
             stroke="#EF4444"
             strokeWidth={3}
             dot={{ r: 4 }}
