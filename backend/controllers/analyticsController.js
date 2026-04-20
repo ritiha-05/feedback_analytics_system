@@ -31,7 +31,7 @@ exports.summary = async (req, res) => {
 };
 
 /* ================================
-   TRENDS (Keep your existing logic)
+   TRENDS 
 ================================ */
 exports.trends = async (req, res) => {
   try {
