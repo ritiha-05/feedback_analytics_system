@@ -1,5 +1,4 @@
 import {
-  LineChart,
   Line,
   XAxis,
   YAxis,
@@ -83,30 +82,51 @@ export default function Charts({ data }) {
           </defs>
 
           {/* 🔹 POSITIVE */}
-          <Area type="monotone" stroke="none" fill="url(#positiveGrad)" />
+          <Area
+            type="monotone"
+            dataKey="positive"
+            fill="url(#positiveGrad)"
+            stroke="none"
+            legendType="none"
+          />
           <Line
             type="monotone"
             dataKey="positive"
+            name="Positive"
             stroke="#10B981"
             strokeWidth={2}
             dot={{ r: 3 }}
           />
 
           {/* 🔸 NEUTRAL */}
-          <Area type="monotone" stroke="none" fill="url(#neutralGrad)" />
+          <Area
+            type="monotone"
+            dataKey="neutral"
+            fill="url(#neutralGrad)"
+            stroke="none"
+            legendType="none"
+          />
           <Line
             type="monotone"
             dataKey="neutral"
+            name="Neutral"
             stroke="#F59E0B"
             strokeWidth={2}
             dot={{ r: 3 }}
           />
 
           {/* 🔻 NEGATIVE */}
-          <Area type="monotone" stroke="none" fill="url(#negativeGrad)" />
+          <Area
+            type="monotone"
+            dataKey="negative"
+            fill="url(#negativeGrad)"
+            stroke="none"
+            legendType="none"
+          />
           <Line
             type="monotone"
             dataKey="negative"
+            name="Negative"
             stroke="#EF4444"
             strokeWidth={3}
             dot={{ r: 4 }}
