@@ -86,7 +86,6 @@ export default function Charts({ data }) {
           <Area type="monotone" dataKey="positive" stroke="none" fill="url(#positiveGrad)" />
           <Line
             type="monotone"
-            dataKey="positive"
             stroke="#10B981"
             strokeWidth={2}
             dot={{ r: 3 }}
@@ -96,7 +95,6 @@ export default function Charts({ data }) {
           <Area type="monotone" dataKey="neutral" stroke="none" fill="url(#neutralGrad)" />
           <Line
             type="monotone"
-            dataKey="neutral"
             stroke="#F59E0B"
             strokeWidth={2}
             dot={{ r: 3 }}
@@ -106,7 +104,6 @@ export default function Charts({ data }) {
           <Area type="monotone" dataKey="negative" stroke="none" fill="url(#negativeGrad)" />
           <Line
             type="monotone"
-            dataKey="negative"
             stroke="#EF4444"
             strokeWidth={3}
             dot={{ r: 4 }}
