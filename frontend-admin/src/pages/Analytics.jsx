@@ -12,15 +12,16 @@ export default function Analytics() {
 
     const fetchTrends = async () => {
       try {
-    
+
         const res = await api.get("/api/analytics/trends");
 
         console.log("BACKEND TREND RESPONSE:", res.data);
 
-        // ⭐ IMPORTANT: map EXACT backend keys
         const formatted = res.data.map((item) => ({
           day: item.day,
-          negative: item.negative
+          positive: item.positive || 0,
+          neutral: item.neutral || 0,
+          negative: item.negative || 0
         }));
 
         setTrendData(formatted);
@@ -28,11 +29,10 @@ export default function Analytics() {
 
       } catch (err) {
         console.log("Trend fetch error:", err);
+        setLoading(false);
       }
     };
-   {!loading && trendData.length === 0 && (
-  <p>No data available</p>
-)}
+
     fetchTrends();
 
   }, []);
@@ -41,11 +41,13 @@ export default function Analytics() {
     <Layout>
       <div style={{ padding: 40 }}>
 
-        <h1>
-          Analytics Trends 📈
-        </h1>
+        <h1>Analytics Trends 📈</h1>
 
         {loading && <p>Loading trends...</p>}
+
+        {!loading && trendData.length === 0 && (
+          <p>No data available</p>
+        )}
 
         {!loading && trendData.length > 0 && (
           <Charts data={trendData} />
